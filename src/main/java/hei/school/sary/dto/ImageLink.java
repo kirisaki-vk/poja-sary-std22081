@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ImageLink {
-    private String originalLink;
-    private String processedLink;
+  private String originalLink;
+  private String processedLink;
 }
