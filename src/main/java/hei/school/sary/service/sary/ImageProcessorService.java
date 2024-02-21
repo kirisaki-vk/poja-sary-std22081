@@ -1,5 +1,6 @@
 package hei.school.sary.service.sary;
 
+import hei.school.sary.dto.ImagesLinks;
 import hei.school.sary.file.BucketComponent;
 import hei.school.sary.file.FileHash;
 import hei.school.sary.repository.ImageProcessorRepository;
@@ -9,10 +10,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import javax.imageio.ImageIO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -64,5 +67,16 @@ public class ImageProcessorService {
             .time(Timestamp.from(Instant.now()))
             .operation(operation)
             .build());
+  }
+
+  public ImagesLinks getImages(String key) {
+    Optional<ImageProcess> imageProcess = imageProcessorRepo.findById(key);
+    return imageProcess
+        .map(
+            process ->
+                new ImagesLinks(
+                    bucketComponent.presign(process.getOriginal(), Duration.ofMinutes(2)),
+                    bucketComponent.presign(process.getEdited(), Duration.ofMinutes(2))))
+        .orElse(null);
   }
 }

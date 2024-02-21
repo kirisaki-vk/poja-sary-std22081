@@ -1,7 +1,7 @@
 package hei.school.sary.endpoint.rest.controller.sary;
 
 import hei.school.sary.dto.ImageFormModel;
-import hei.school.sary.dto.ImageLink;
+import hei.school.sary.dto.ImagesLinks;
 import hei.school.sary.file.FileHash;
 import hei.school.sary.service.sary.ImageProcessorService;
 import java.io.IOException;
@@ -17,8 +17,8 @@ public class ImageController {
   private final ImageProcessorService imageProcessor;
 
   @GetMapping("/{imageId}")
-  public ImageLink getImage(@PathVariable String imageId) {
-    return null;
+  public ImagesLinks getImage(@PathVariable String imageId) {
+    return imageProcessor.getImages(imageId);
   }
 
   @PutMapping(
