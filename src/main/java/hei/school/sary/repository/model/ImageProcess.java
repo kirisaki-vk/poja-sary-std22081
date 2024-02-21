@@ -11,8 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @Table(name = "image_process")
 public class ImageProcess {
-  @Id
-  private String id;
+  @Id private String id;
 
   private String original;
   private String edited;
