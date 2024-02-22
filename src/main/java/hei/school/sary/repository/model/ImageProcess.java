@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "image_process")
 public class ImageProcess {
@@ -17,6 +18,4 @@ public class ImageProcess {
   private String edited;
   private String operation;
   private Timestamp time;
-
-  public ImageProcess() {}
 }
