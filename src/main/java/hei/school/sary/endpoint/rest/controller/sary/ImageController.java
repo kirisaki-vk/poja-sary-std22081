@@ -7,7 +7,6 @@ import hei.school.sary.service.sary.ImageProcessorService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
