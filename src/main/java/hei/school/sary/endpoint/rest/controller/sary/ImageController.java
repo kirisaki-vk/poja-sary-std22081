@@ -27,8 +27,6 @@ public class ImageController {
   @PutMapping(
       value = "/bw/{imageId}",
       consumes = {
-        MediaType.IMAGE_PNG_VALUE,
-        MediaType.IMAGE_JPEG_VALUE,
         MediaType.MULTIPART_FORM_DATA_VALUE,
       })
   public List<FileHash> blackAndWhite(
