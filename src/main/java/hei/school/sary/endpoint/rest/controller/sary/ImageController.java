@@ -6,8 +6,11 @@ import hei.school.sary.file.FileHash;
 import hei.school.sary.service.sary.ImageProcessorService;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,8 +20,9 @@ public class ImageController {
   private final ImageProcessorService imageProcessor;
 
   @GetMapping("/{imageId}")
-  public ImagesLinks getImage(@PathVariable String imageId) {
-    return imageProcessor.getImages(imageId);
+  public ResponseEntity<ImagesLinks> getImage(@PathVariable String imageId) {
+    Optional<ImagesLinks> links = Optional.of(imageProcessor.getImages(imageId));
+    return links.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
   }
 
   @PutMapping(
